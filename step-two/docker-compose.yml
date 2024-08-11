@@ -3,26 +3,24 @@ version: '3'
 services:
   worker_one:
     image: gitea/act_runner:latest
-    networks:
-      - host
+    networks_mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./worker_one_data:/data
     environment:
-      - GITEA_INSTANCE_URL
-      - GITEA_RUNNER_REGISTRATION_TOKEN
+      - GITEA_INSTANCE_URL=${GITEA_INSTANCE_URL}
+      - GITEA_RUNNER_REGISTRATION_TOKEN=${GITEA_TOKEN}
       - GITEA_RUNNER_NAME="worker_one"
       - GITEA_RUNNER_LABELS=ubuntu-latest:docker://node:16-bullseye
 
   worker_two:
     image: gitea/act_runner:latest
-    networks:
-      - host
+    networks_mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./worker_two_data:/data
     environment:
-      - GITEA_INSTANCE_URL
-      - GITEA_RUNNER_REGISTRATION_TOKEN
+      - GITEA_INSTANCE_URL=${GITEA_INSTANCE_URL}
+      - GITEA_RUNNER_REGISTRATION_TOKEN=${GITEA_TOKEN}
       - GITEA_RUNNER_NAME="worker_two"
       - GITEA_RUNNER_LABELS=ubuntu-latest:docker://node:16-bullseye

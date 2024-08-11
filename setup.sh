@@ -41,20 +41,19 @@ echo "You may need to log out and log back in for the changes to take effect."
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
 # Add lazydocker to PATH by updating ~/.profile
-LAZYDOCKER_PATH="$HOME/bin"
-mkdir -p $LAZYDOCKER_PATH
-mv $HOME/.lazydocker/bin/lazydocker $LAZYDOCKER_PATH
+# Define the alias line to be added
+alias_line='alias lazydocker="sudo ~/.local/bin/lazydocker"'
 
-# Ensure $HOME/bin is in the PATH
-if [[ ":$PATH:" != *":$LAZYDOCKER_PATH:"* ]]; then
-    echo "export PATH=\$PATH:$LAZYDOCKER_PATH" >> ~/.profile
-fi
+# Add the alias to the .bashrc file
+echo "$alias_line" >> ~/.bashrc
+
+# Inform the user
+echo "Alias 'lazydocker' added to ~/.bashrc."
 
 # Apply the changes to the current session
-source ~/.profile
+source ~/.bashrc
 
-# Verify the installation
-lazydocker --version
-
-echo "lazydocker has been installed and added to your PATH."
+# Confirm the alias was added
+echo "Alias 'lazydocker' is now available."
+echo "Installation done!"
 
