@@ -21,4 +21,4 @@ Install the vpn that is desired to access the server remotely and only by you ou
 
 
 ## side note
-The docker-compose files need and .env file to work. you will notice
+The docker-compose files need and .env file to work. you will notice that the environment variables are missing the values, this is becuase is been called from the machine environment variables.
